@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="fr" data-lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VOORS — Fourniture minière & services industriels</title>
+  <meta name="description" content="VOORS fournit des biens et services pour le secteur minier : équipements, pièces, consommables, maintenance, assistance." />
+  <meta property="og:title" content="VOORS — Fourniture minière & services industriels" />
+  <meta property="og:description" content="Fourniture de biens & services pour le secteur minier. Fiabilité, performance, partenariat." />
+  <meta property="og:type" content="website" />
+
+  <!-- Meta performance -->
+  <meta name="theme-color" content="#0B0B0B">
+  <meta http-equiv="Cache-Control" content="public, max-age=3600">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "VOORS MINING MALI SARLU",
+    "url": "https://www.voorsms.com",
+    "logo": "https://www.voorsms.com/assets/img/logo-voors.svg",
+    "description": "Fourniture de biens et services pour le secteur minier : équipements, pièces, consommables, maintenance, assistance.",
+    "telephone": "+22393996764",
+    "email": "contact@voorsms.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "ML"
+    },
+    "areaServed": ["ML","BJ","SN","CI","NE","BF","International"]
+  }
+  </script>
+    <!-- Preload critical assets -->
+  <link rel="preload" href="assets/video/mining-hero.mp4" as="video" type="video/mp4">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" as="style" crossorigin>
+  <link rel="preload" href="assets/css/style.css" as="style">
+
+  <!-- Preconnect to critical origins -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+
+  <!-- Advanced animation layers -->
+  <canvas id="particles-canvas" class="particles" aria-hidden="true"></canvas>
+<div class="topbar">
+    <div class="container topbar__inner">
+      <div class="topbar__left">
+        <span class="chip">Mining Supply</span>
+        <span class="sep">•</span>
+        <a class="topbar__link" href="tel:+22393996764">+223 93 99 67 64</a>
+        <span class="sep">•</span>
+        <a class="topbar__link" href="mailto:contact@voorsms.com">contact@voorsms.com</a>
+      </div>
+      <div class="topbar__right">
+        <button class="lang" type="button" data-lang-switch aria-label="Changer de langue">
+          <span class="lang__dot"></span><span data-i18n="langLabel">FR</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <a class="brand" href="#top" aria-label="VOORS Accueil">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">VOORS</span>
+      </a>
+
+      <nav class="nav" aria-label="Navigation principale" data-animate="conveyor">
+        <a class="nav__link" href="#about" data-i18n="navAbout">À propos</a>
+        <a class="nav__link" href="#offers" data-i18n="navOffers">Produits & Services</a>
+        <a class="nav__link" href="#sectors" data-i18n="navSectors">Secteurs</a>
+        <a class="nav__link" href="#partners" data-i18n="navPartners">Partenaires</a>
+        <a class="nav__link" href="blog.html" data-i18n="navBlog">Actualités</a>
+        <a class="nav__link nav__cta" href="#contact" data-i18n="navContact">Contact</a>
+      </nav>
+
+      <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" data-burger>
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile" data-mobile>
+      <a href="#about" data-i18n="navAbout">À propos</a>
+      <a href="#offers" data-i18n="navOffers">Produits & Services</a>
+      <a href="#sectors" data-i18n="navSectors">Secteurs</a>
+      <a href="#partners" data-i18n="navPartners">Partenaires</a>
+      <a href="blog.html" data-i18n="navBlog">Actualités</a>
+      <a href="#contact" class="mobile__cta" data-i18n="navContact">Contact</a>
+    </div>
+  </header>
+  <section class="hero hero--video" id="hero-section">
+    <div class="hero__bg">
+      <video
+        class="hero__video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="assets/img/hero-mining.jpg"
+      >
+        <source src="assets/video/mining-hero.mp4" type="video/mp4" />
+        <!-- Fallback -->
+      </video>
+      <div class="hero__overlay" data-parallax data-parallax-speed="0.15"></div>
+      <img src="assets/img/overlay-grain.png" alt="" aria-hidden="true" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.10;mix-blend-mode:overlay;pointer-events:none;">
+    </div>
+
+    <div class="container hero__inner">
+      <div class="hero__content reveal" data-animate="machinery">
+        <p class="kicker" data-i18n="heroKicker">Mining Innovation & Performance</p>
+
+        <p class="typing-line" aria-label="Slogan">
+          <span class="typing" data-typing data-typing-strings="Approvisionnement, maintenance, sourcing • Réactivité 24/7 • Qualité & conformité"></span><span class="caret" aria-hidden="true"></span>
+        </p>
+
+        <h1 class="h1" data-split>
+          Votre partenaire
+          <span class="hero__highlight">minier</span><br>
+          fiable & réactif
+        </h1>
+
+        <p class="lead">
+          VOORS accompagne les acteurs du secteur minier avec une offre 
+          structurée, des délais maîtrisés et un support opérationnel.
+        </p>
+
+        <div class="hero__actions">
+          <a href="#contact" class="btn btn--primary" data-ripple>
+            Demander une information
+          </a>
+          <a href="#offers" class="btn btn--ghost" data-ripple>
+            Voir nos solutions
+          </a>
+        </div>
+
+        <div class="hero__trust">
+            <div class="trust">
+              <div class="trust__num">24/7</div>
+              <div class="trust__txt" data-i18n="heroTrust1">Réactivité & support</div>
+            </div>
+            <div class="trust">
+              <div class="trust__num">B2B</div>
+              <div class="trust__txt" data-i18n="heroTrust2">Approche partenariat</div>
+            </div>
+            <div class="trust">
+              <div class="trust__num">INTL</div>
+              <div class="trust__txt" data-i18n="heroTrust3">Couverture internationale</div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- <section class="hero">
+    <div class="container hero__grid">
+      <div class="hero__copy">
+        <p class="kicker" data-i18n="heroKicker">Fourniture minière & services industriels</p>
+        <h1 class="h1" data-i18n="heroTitle">Votre partenaire fiable pour les équipements, pièces et consommables miniers.</h1>
+        <p class="lead" data-i18n="heroLead">
+          VOORS accompagne les acteurs du secteur minier avec une offre structurée, des délais maîtrisés et un support opérationnel.
+        </p>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" data-ripple href="#contact" data-i18n="heroCTA1">Demander une information</a>
+          <a class="btn btn--ghost" data-ripple href="#offers" data-i18n="heroCTA2">Découvrir nos offres</a>
+        </div>
+
+        <div class="hero__trust">
+          <div class="trust">
+            <div class="trust__num">24/7</div>
+            <div class="trust__txt" data-i18n="heroTrust1">Réactivité & support</div>
+          </div>
+          <div class="trust">
+            <div class="trust__num">B2B</div>
+            <div class="trust__txt" data-i18n="heroTrust2">Approche partenariat</div>
+          </div>
+          <div class="trust">
+            <div class="trust__num">INTL</div>
+            <div class="trust__txt" data-i18n="heroTrust3">Couverture internationale</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__visual">
+        <div class="frame">
+          <img src="assets/img/hero-mining.svg" alt="Illustration industrielle VOORS" />
+          <div class="frame__badge">
+            <div class="badge__title" data-i18n="heroBadgeTitle">Qualité & conformité</div>
+            <div class="badge__text" data-i18n="heroBadgeText">Process rigoureux • Traçabilité • Fiabilité</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img class="hero__pattern" src="assets/img/pattern-grid.svg" loading="lazy" alt="" aria-hidden="true" />
+  </section> -->
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="split">
+        <div>
+          <h2 class="h2" data-i18n="numbersTitle">Chiffres clés</h2>
+          <p class="muted" data-i18n="numbersLead">Une vitrine claire pour rassurer les achats, la logistique et les partenaires.</p>
+        </div>
+        <div class="cards cards--numbers">
+          <div class="card card--number" data-tilt data-animate="vibrate" data-intensity="0.5">
+            <img src="assets/img/icon-coverage.svg" alt="" aria-hidden="true" width="40" height="40" style="width:40px;height:40px;margin-bottom:10px;opacity:.9">
+            <img src="assets/img/icon-response.svg" alt="" aria-hidden="true" width="40" height="40" style="width:40px;height:40px;margin-bottom:10px;opacity:.9">
+            <img src="assets/img/icon-categories.svg" alt="" aria-hidden="true" width="40" height="40" style="width:40px;height:40px;margin-bottom:10px;opacity:.9">
+            <div class="card__value" data-counter="50" data-prefix="+" data-suffix="">+50</div>
+            <div class="card__label" data-i18n="numbers1">Catégories d’équipements</div>
+            <div class="counter-progress" data-width="100%"></div>
+          </div>
+          <div class="card card--number" data-tilt data-animate="vibrate" data-intensity="0.5">
+            <div class="card__value" data-counter="48" data-prefix="" data-suffix="h">48h</div>
+            <div class="card__label" data-i18n="numbers2">Temps de réponse cible</div>
+            <div class="counter-progress" data-width="100%"></div>
+          </div>
+          <div class="card card--number" data-tilt data-animate="vibrate" data-intensity="0.5">
+            <div class="card__value" data-counter="2" data-prefix="" data-suffix="">2</div>
+            <div class="card__label" data-i18n="numbers3">Zones : Afrique & Europe</div>
+            <div class="counter-progress" data-width="100%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section__head reveal" data-reveal="fade-up">
+        <h2 class="h2" data-i18n="aboutTitle">À propos de VOORS</h2>
+        <p class="lead lead--sm" data-i18n="aboutLead">
+          VOORS structure ses offres autour de la disponibilité, de la sécurité et de l’efficacité opérationnelle.
+        </p>
+      </div>
+
+      <div class="cards cards--3">
+        <div class="card" data-tilt>
+          <img class="card__img" src="assets/img/about-mission.jpg" loading="lazy" decoding="async" width="640" height="420" alt="Équipe et préparation logistique">
+          <h3 class="h3" data-i18n="aboutCard1Title">Mission</h3>
+          <p class="muted" data-i18n="aboutCard1Text">
+            Approvisionner le secteur minier avec des biens et services fiables, dans le respect des exigences industrielles.
+          </p>
+        </div>
+        <div class="card" data-tilt>
+          <img class="card__img" src="assets/img/about-vision.jpg" loading="lazy" decoding="async" width="640" height="420" alt="Site industriel et équipements">
+          <h3 class="h3" data-i18n="aboutCard2Title">Vision</h3>
+          <p class="muted" data-i18n="aboutCard2Text">
+            Devenir un partenaire de référence pour les sous-traitants miniers et les acteurs industriels de la région.
+          </p>
+        </div>
+        <div class="card" data-tilt>
+          <img class="card__img" src="assets/img/about-values.jpg" loading="lazy" decoding="async" width="640" height="420" alt="Équipement de sécurité et conformité">
+          <h3 class="h3" data-i18n="aboutCard3Title">Valeurs</h3>
+          <p class="muted" data-i18n="aboutCard3Text">
+            Fiabilité • Qualité • Sécurité • Transparence • Engagement.
+          </p>
+        </div>
+      </div>
+
+      <div class="why">
+        <div class="why__left">
+          <h3 class="h3" data-i18n="whyTitle">Pourquoi nous choisir ?</h3>
+          <ul class="list">
+            <li data-i18n="why1">Approche B2B : process achats, conformité et délais.</li>
+            <li data-i18n="why2">Catalogue structuré : équipements, pièces, consommables.</li>
+            <li data-i18n="why3">Support opérationnel : maintenance et assistance.</li>
+            <li data-i18n="why4">Communication claire : devis, spécifications, traçabilité.</li>
+            <li data-i18n="why5">Couverture internationale : Afrique de l’Ouest & partenaires.</li>
+          </ul>
+        </div>
+        <div class="why__right">
+          <div class="panel">
+            <img src="assets/img/about-location.jpg" loading="lazy" decoding="async" width="800" height="500" alt="Implantation VOORS" style="width:100%;height:140px;object-fit:cover;border-radius:14px;border:1px solid rgba(11,11,11,.10);margin-bottom:12px;">
+            <div class="panel__title" data-i18n="implTitle">Implantation</div>
+            <div class="panel__text" data-i18n="implText">Belgique • Mali — Coordination, sourcing et proximité opérationnelle.</div>
+            <div class="panel__meta">
+              <span class="pill">Mining</span>
+              <span class="pill">Industrial</span>
+              <span class="pill">Logistics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="offers">
+    <div class="container">
+      <div class="section__head reveal" data-reveal="fade-up">
+        <h2 class="h2" data-i18n="offersTitle">Produits & Services</h2>
+        <p class="lead lead--sm" data-i18n="offersLead">Une offre structurée, orientée disponibilité et performance terrain.</p>
+      </div>
+
+      <div class="cards cards--3">
+        <article class="card card--media" data-tilt>
+          <img 
+            class="card__img" 
+            src="assets/img/card-supply.svg" 
+            loading="lazy" 
+            width="400" 
+            height="300"
+            alt="Illustration fourniture industrielle"
+            decoding="async"
+          >
+          <h3 class="h3" data-i18n="offersCard1Title">Fourniture de biens</h3>
+          <p class="muted" data-i18n="offersCard1Text">
+            Machines industrielles, pièces de rechange, moteurs, pompes, équipements électriques, télécoms, EPI…
+          </p>
+          <a class="link" href="#catalog" data-i18n="offersCardLink">Voir le catalogue</a>
+        </article>
+
+        <article class="card card--media" data-tilt>
+          <img class="card__img" src="assets/img/card-maintenance.svg" loading="lazy" alt="Illustration maintenance industrielle" />
+          <h3 class="h3" data-i18n="offersCard2Title">Maintenance & assistance</h3>
+          <p class="muted" data-i18n="offersCard2Text">
+            Entretiens, maintenance industrielle et support opérationnel selon vos besoins.
+          </p>
+          <a class="link" href="#contact" data-i18n="offersCardLink2">Parler à un responsable</a>
+        </article>
+
+        <article class="card card--media" data-tilt>
+          <img class="card__img" src="assets/img/card-partners.svg" loading="lazy" alt="Illustration partenariat industriel" />
+          <h3 class="h3" data-i18n="offersCard3Title">Sourcing & partenariat</h3>
+          <p class="muted" data-i18n="offersCard3Text">
+            Approvisionnement, coordination et réseau partenaires pour sécuriser la chaîne de valeur.
+          </p>
+          <a class="link" href="#partners" data-i18n="offersCardLink3">Découvrir</a>
+        </article>
+      </div>
+
+      <div class="catalog" id="catalog">
+        <h3 class="h3" data-i18n="catalogTitle">Catégories principales</h3>
+        <div class="tags">
+          <span class="tag" data-i18n="cat1">Machines industrielles & pièces</span>
+          <span class="tag" data-i18n="cat2">Moteurs & pompes</span>
+          <span class="tag" data-i18n="cat3">Produits chimiques & labo</span>
+          <span class="tag" data-i18n="cat4">Véhicules & pièces</span>
+          <span class="tag" data-i18n="cat5">Groupes électrogènes & solaire</span>
+          <span class="tag" data-i18n="cat6">Électrique / IT / Télécom</span>
+          <span class="tag" data-i18n="cat7">EPI & robinetterie</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sectors">
+    <div class="container">
+      <div class="section__head reveal" data-reveal="fade-up">
+        <h2 class="h2" data-i18n="sectorsTitle">Secteurs d’intervention</h2>
+        <p class="lead lead--sm" data-i18n="sectorsLead">Une approche adaptable aux environnements industriels exigeants.</p>
+      </div>
+
+      <div class="cards cards--3">
+        <div class="card" data-tilt>
+          <img class="card__img" src="assets/img/sector-mines.jpg" loading="lazy" decoding="async" width="640" height="420" alt="Exploitation minière industrielle">
+          <h3 class="h3" data-i18n="sector1">Mines industrielles</h3>
+          <p class="muted" data-i18n="sector1Text">Approvisionnement, consommables, équipements et besoins spécifiques.</p>
+        </div>
+        <div class="card" data-tilt>
+          <img class="card__img" src="assets/img/sector-contracting.jpg" loading="lazy" decoding="async" width="640" height="420" alt="Interventions et maintenance terrain">
+          <h3 class="h3" data-i18n="sector2">Sous-traitance minière</h3>
+          <p class="muted" data-i18n="sector2Text">Support aux sous-traitants : pièces, maintenance, équipements terrain.</p>
+        </div>
+        <div class="card" data-tilt>
+          <img class="card__img" src="assets/img/sector-industrial.jpg" loading="lazy" decoding="async" width="640" height="420" alt="Projet industriel et logistique">
+          <h3 class="h3" data-i18n="sector3">Projets industriels</h3>
+          <p class="muted" data-i18n="sector3Text">Équipements, énergie, sécurité et logistique pour opérations industrielles.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="partners">
+    <div class="container">
+      <div class="section__head reveal" data-reveal="fade-up">
+        <h2 class="h2" data-i18n="partnersTitle">Partenaires & investisseurs</h2>
+        <p class="lead lead--sm" data-i18n="partnersLead">
+          VOORS développe un réseau de collaboration pour renforcer la qualité, la disponibilité et la couverture internationale.
+        </p>
+      </div>
+
+      <div class="partner-grid" data-tilt>
+        <div class="partner" data-tilt>
+          <div class="partner__logo"><img src="assets/img/partner-suppliers.svg" alt="" aria-hidden="true" width="46" height="46" style="width:100%;height:100%;object-fit:contain;border-radius:14px"></div>
+          <div class="partner__txt">
+            <div class="partner__name" data-i18n="p1">Partenaires fournisseurs</div>
+            <div class="partner__desc" data-i18n="p1d">Sourcing et disponibilité sur des catégories critiques.</div>
+          </div>
+        </div>
+        <div class="partner" data-tilt>
+          <div class="partner__logo"><img src="assets/img/partner-tech.svg" alt="" aria-hidden="true" width="46" height="46" style="width:100%;height:100%;object-fit:contain;border-radius:14px"></div>
+          <div class="partner__txt">
+            <div class="partner__name" data-i18n="p2">Partenaires techniques</div>
+            <div class="partner__desc" data-i18n="p2d">Support maintenance, expertise et interventions.</div>
+          </div>
+        </div>
+        <div class="partner" data-tilt>
+          <div class="partner__logo"><img src="assets/img/partner-invest.svg" alt="" aria-hidden="true" width="46" height="46" style="width:100%;height:100%;object-fit:contain;border-radius:14px"></div>
+          <div class="partner__txt">
+            <div class="partner__name" data-i18n="p3">Investisseurs / institutions</div>
+            <div class="partner__desc" data-i18n="p3d">Développement, conformité et expansion régionale.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta">
+        <div class="cta__copy">
+          <h3 class="h3" data-i18n="ctaPartnersTitle">Vous souhaitez collaborer ?</h3>
+          <p class="muted" data-i18n="ctaPartnersText">Contactez-nous pour étudier un partenariat ou une opportunité d’investissement.</p>
+        </div>
+        <a class="btn btn--primary" data-ripple href="#contact" data-i18n="ctaPartnersBtn">Nous contacter</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="portal">
+    <div class="container">
+      <div class="section__head reveal" data-reveal="fade-up">
+        <h2 class="h2" data-i18n="portalTitle">Espace client (optionnel)</h2>
+        <p class="lead lead--sm" data-i18n="portalLead">
+          Une extension Phase 2 pour centraliser documents, demandes et suivi.
+        </p>
+      </div>
+
+      <div class="portal">
+        <div class="portal__box">
+          <h3 class="h3" data-i18n="portalBoxTitle">Portail entreprise</h3>
+          <ul class="list">
+            <li data-i18n="portal1">Connexion sécurisée</li>
+            <li data-i18n="portal2">Téléchargement de documents</li>
+            <li data-i18n="portal3">Suivi des demandes</li>
+            <li data-i18n="portal4">Messagerie client / entreprise</li>
+          </ul>
+        </div>
+        <div class="portal__note">
+          <div class="note">
+            <div class="note__title" data-i18n="portalNoteTitle">Phase 2</div>
+            <div class="note__text" data-i18n="portalNoteText">
+              Fonctionnalités activables après la mise en ligne du site vitrine.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section section--alt" id="blog-preview">
+    <div class="container">
+      <div class="section__head reveal" data-reveal="fade-up">
+        <div>
+          <p class="eyebrow">ACTUALITÉS / BLOG</p>
+          <h2 class="h2">Insights & News du secteur minier</h2>
+          <p class="muted">
+            Veille, expertise et mises à jour sur l’approvisionnement, la maintenance et la performance opérationnelle.
+          </p>
+        </div>
+
+        <a class="btn btn--ghost" data-ripple href="blog.html">Voir tous les articles</a>
+      </div>
+
+      <div class="grid grid--3" id="homeBlogCards" aria-live="polite"></div>
+
+      <div class="chips">
+        <span class="pill">News Minières</span>
+        <span class="pill">Articles Expertise</span>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section__head reveal" data-reveal="fade-up">
+        <div>
+          <p class="eyebrow">RÉFÉRENCES / PROJETS</p>
+          <h2 class="h2">Études de cas & réalisations</h2>
+          <p class="muted">
+            Exemples de besoins couverts : fourniture, sourcing, support terrain, logistique et mise en conformité.
+          </p>
+        </div>
+        <a class="btn btn--primary" data-ripple href="#contact">Demander une étude</a>
+      </div>
+
+      <div class="grid grid--3">
+        <article class="card card--project reveal" data-tilt>
+          <div class="card__tag">Étude de cas</div>
+          <h3 class="h3">Approvisionnement pièces critiques</h3>
+          <p class="muted">Réduction du temps d’arrêt grâce à une réponse rapide et un sourcing sécurisé.</p>
+          <ul class="list">
+            <li>Délai : 72h</li>
+            <li>Traçabilité : documents complets</li>
+            <li>Livraison : site minier</li>
+          </ul>
+        </article>
+
+        <article class="card card--project reveal" data-tilt>
+          <div class="card__tag">Réalisation</div>
+          <h3 class="h3">Pack EPI & sécurité chantier</h3>
+          <p class="muted">Fourniture conforme et livraisons planifiées pour équipes opérationnelles.</p>
+          <ul class="list">
+            <li>Conformité : fiches techniques</li>
+            <li>Stock : disponibilité renforcée</li>
+            <li>Support : suivi client</li>
+          </ul>
+        </article>
+
+        <article class="card card--project reveal" data-tilt>
+          <div class="card__tag">Étude de cas</div>
+          <h3 class="h3">Sourcing équipements & logistique</h3>
+          <p class="muted">Coordination fournisseur + transport, avec planning et reporting.</p>
+          <ul class="list">
+            <li>Approvisionnement : international</li>
+            <li>Logistique : suivi</li>
+            <li>Reporting : hebdomadaire</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <section class="section section--alt" id="contact">
+    <div class="container">
+      <div class="section__head reveal" data-reveal="fade-up">
+        <h2 class="h2" data-i18n="contactTitle">Contact</h2>
+        <p class="lead lead--sm" data-i18n="contactLead">
+          Décrivez votre besoin (équipement, pièce, consommable, maintenance). Nous répondons rapidement.
+        </p>
+      </div>
+
+      <div class="contact">
+        <form class="form" id="contactForm" novalidate>
+          <div class="field">
+            <label for="name" data-i18n="fName">Nom</label>
+            <input id="name" name="name" type="text" placeholder="Nom et prénom" required />
+            <small class="error" data-error-for="name"></small>
+          </div>
+
+          <div class="field">
+            <label for="email" data-i18n="fEmail">Email</label>
+            <input id="email" name="email" type="email" placeholder="ex: achats@entreprise.com" required />
+            <small class="error" data-error-for="email"></small>
+          </div>
+
+          <div class="field">
+            <label for="message" data-i18n="fMsg">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Décrivez votre besoin…" required></textarea>
+            <small class="error" data-error-for="message"></small>
+          </div>
+
+          <button class="btn btn--primary" data-ripple type="submit" data-i18n="fSend">Envoyer</button>
+          <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+
+        <aside class="contact__side">
+          <div class="sidecard">
+            <div class="sidecard__title" data-i18n="contactInfo">Informations</div>
+            <div class="sidecard__line"><strong data-i18n="contactPhone">Téléphone :</strong> <a href="tel:+22393996764">+223 93 99 67 64</a></div>
+            <div class="sidecard__line"><strong>Email :</strong> <a href="mailto:contact@voorsms.com">contact@voorsms.com</a></div>
+            <div class="sidecard__line"><strong data-i18n="contactAreas">Zones :</strong> <span data-i18n="contactAreasText">Afrique de l’Ouest • International</span></div>
+          </div>
+
+          <div class="sidecard">
+            <div class="sidecard__title" data-i18n="contactNoteTitle">Engagement</div>
+            <div class="sidecard__text" data-i18n="contactNoteText">Réponse rapide • Process clair • Partenariat long terme.</div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <div class="footer__brand">VOORS</div>
+        <p class="footer__muted" data-i18n="footerText">
+          Fourniture de biens & services pour le secteur minier. Approche B2B, fiabilité et performance.
+        </p>
+      </div>
+
+      <div>
+        <div class="footer__title" data-i18n="footerLinks">Liens</div>
+        <a class="footer__link" href="#about" data-i18n="navAbout">À propos</a>
+        <a class="footer__link" href="#offers" data-i18n="navOffers">Produits & Services</a>
+        <a class="footer__link" href="blog.html" data-i18n="navBlog">Actualités</a>
+        <a class="footer__link" href="#contact" data-i18n="navContact">Contact</a>
+      </div>
+
+      <div>
+        <div class="footer__title" data-i18n="footerLegal">Légal</div>
+        <a class="footer__link" href="#" data-open-legal="legal" data-i18n="legal">Mentions légales</a>
+        <a class="footer__link" href="#" data-open-legal="privacy" data-i18n="privacy">Politique de confidentialité</a>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <span>© <span id="year"></span> VOORS</span>
+      <span class="footer__sep">•</span>
+      <span data-i18n="footerMade">Identité digitale : Charte VOORS</span>
+    </div>
+  </footer>
+
+  <div class="modal" id="legalModal" aria-hidden="true">
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal__head">
+        <h3 class="h3" id="modalTitle"> </h3>
+        <button class="iconbtn" type="button" aria-label="Fermer" data-close-modal>✕</button>
+      </div>
+      <div class="modal__body" id="modalBody"></div>
+    </div>
+  </div>
+
+    <!-- Avant main.js -->
+  <script src="assets/js/perf.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
