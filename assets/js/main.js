@@ -545,3 +545,19 @@
     boot();
   }
 })();
+class IntersectionManager {
+  constructor() {
+    this.observers = new Map();
+  }
+  
+  register(selector, callback, options = {}) {
+    const io = new IntersectionObserver(callback, options);
+    const elements = document.querySelectorAll(selector);
+    elements.forEach(el => io.observe(el));
+    this.observers.set(selector, io);
+  }
+  
+  cleanup() {
+    this.observers.forEach(io => io.disconnect());
+  }
+}
