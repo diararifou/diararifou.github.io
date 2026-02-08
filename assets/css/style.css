@@ -15,13 +15,23 @@
   /* Variables existantes conservées (pour ne pas casser les styles) */
   --gray: var(--gray-500);
   --bg:#FFFFFF;
-  --alt:#F6F6F6;
+  --alt:#F0F0F0; /* Changer de #F6F6F6 à #F0F0F0 (gris plus clair) */
   --ink: #111111;
   --border: rgba(11,11,11,.12);
 
   --shadow: 0 18px 40px rgba(11,11,11,.10);
   --shadow-soft: 0 16px 50px rgba(11,11,11,.14);
   --radius: 18px;
+ /* Tons d'or pour remplacer bleu/vert */
+  --gold-light: #FFE44D;
+  --gold-medium: #FFD700; /* Déjà --gold */
+  --gold-dark: #E5C100; /* Déjà --gold-hover */
+  --gold-darker: #B39600;
+  
+  /* Tons neutres */
+  --neutral-light: rgba(212,175,55,.2);
+  --neutral-medium: rgba(180,150,40,.4);
+  --neutral-dark: rgba(150,125,30,.6);
 
   /* Anciennes couleurs -> mappées vers gris (compatibilité) */
   --blue: var(--gray-400);
@@ -660,7 +670,7 @@ textarea:focus-visible {
   margin-bottom:18px;
 }
 .section--alt{
-  background: rgba(212,175,55,.06);
+  background: #F0F0F0; /* Remplacer var(--alt) par la couleur souhaitée */
   border-top: 1px solid rgba(11,11,11,.06);
   border-bottom: 1px solid rgba(11,11,11,.06);
 }
@@ -1317,8 +1327,8 @@ img[loading="lazy"] {
 /* Base background premium */
 body{
   background:
-    radial-gradient(1100px 640px at 12% -10%, rgba(0,168,204,.10), transparent 60%),
-    radial-gradient(900px 520px at 90% 0%, rgba(0,212,170,.10), transparent 55%),
+    radial-gradient(1100px 640px at 12% -10%, rgba(212,175,55,.10), transparent 60%),
+    radial-gradient(900px 520px at 90% 0%, rgba(180,150,40,.08), transparent 55%),
     radial-gradient(820px 520px at 50% 120%, rgba(255,215,0,.10), transparent 55%),
     var(--bg);
 }
@@ -1356,8 +1366,8 @@ body > * { position: relative; z-index: 1; }
   background:
     linear-gradient(180deg, rgba(10,15,28,.40) 0%, rgba(10,15,28,.86) 92%),
     radial-gradient(circle at 16% 20%, rgba(255,215,0,.22), transparent 55%),
-    radial-gradient(circle at 86% 12%, rgba(0,168,204,.16), transparent 52%),
-    radial-gradient(circle at 72% 92%, rgba(0,212,170,.16), transparent 58%);
+    radial-gradient(circle at 86% 12%, rgba(212,175,55,.14), transparent 52%),
+    radial-gradient(circle at 72% 92%, rgba(180,150,40,.12), transparent 58%);
 }
 
 /* Typing line */
@@ -1371,7 +1381,7 @@ body > * { position: relative; z-index: 1; }
   gap: 6px;
 }
 .typing{
-  background: linear-gradient(90deg, rgba(255,215,0,.95), rgba(0,212,170,.92), rgba(0,168,204,.92));
+  background: linear-gradient(90deg, rgba(255,215,0,.95), rgba(212,175,55,.85), rgba(180,150,40,.80));
   background-size: 220% 220%;
   animation: gradientShift 7s var(--ease-inout) infinite;
   -webkit-background-clip:text;
@@ -1404,8 +1414,8 @@ body > * { position: relative; z-index: 1; }
   box-shadow: 0 18px 50px rgba(10,15,28,.22);
 }
 @keyframes glowPulse{
-  0%,100%{ box-shadow: 0 0 0 0 rgba(255,215,0,.00), 0 16px 52px rgba(0,168,204,.10); }
-  50%{ box-shadow: 0 0 0 10px rgba(255,215,0,.10), 0 18px 62px rgba(0,212,170,.14); }
+  0%,100%{ box-shadow: 0 0 0 0 rgba(255,215,0,.00), 0 16px 52px rgba(212,175,55,.10); }
+  50%{ box-shadow: 0 0 0 10px rgba(255,215,0,.10), 0 18px 62px rgba(212,175,55,.14); }
 }
 .btn--primary.glow{
   animation: glowPulse 2.8s var(--ease-inout) infinite;
@@ -1436,7 +1446,7 @@ body > * { position: relative; z-index: 1; }
   inset:-1px;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(120deg, rgba(255,215,0,.55), rgba(0,212,170,.45), rgba(0,168,204,.45));
+  background: linear-gradient(120deg, rgba(255,215,0,.55), rgba(212,175,55,.45), rgba(180,150,40,.45));
   background-size: 200% 200%;
   opacity: 0;
   pointer-events:none;
@@ -1610,7 +1620,7 @@ body.has-custom-cursor *{ cursor:none; }
 .hover-glow:hover {
   box-shadow: 
     0 0 40px rgba(255, 215, 0, 0.3),
-    0 0 80px rgba(0, 168, 204, 0.2),
+    0 0 80px rgba(212, 175, 55, 0.2),
     inset 0 0 20px rgba(255, 255, 255, 0.1);
   transform: translateY(-8px) scale(1.02);
 }
@@ -1645,7 +1655,7 @@ body.has-custom-cursor *{ cursor:none; }
 /* ---------- ANIMATION DE COMPTEUR AVEC BARRE ---------- */
 .counter-progress {
   height: 3px;
-  background: linear-gradient(90deg, var(--gold), var(--teal));
+  background: linear-gradient(90deg, var(--gold), rgba(212,175,55,.8));
   width: 0%;
   border-radius: 2px;
   margin-top: 10px;
@@ -1679,7 +1689,7 @@ body.has-custom-cursor *{ cursor:none; }
   overflow: hidden;
   border: 2px solid transparent;
   background: linear-gradient(var(--black), var(--black)) padding-box,
-              linear-gradient(90deg, var(--gold), var(--teal), var(--blue)) border-box;
+              linear-gradient(90deg, var(--gold), rgba(212,175,55,.8), rgba(180,150,40,.6)) border-box;
   animation: borderFlow 3s linear infinite;
   background-size: 200% 100%;
 }
@@ -1829,5 +1839,731 @@ section.industrial-scan::after{
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+/* =============================================
+   HERO CLEAN - VIDÉO SEULE EN BACKGROUND
+============================================= */
+
+/* Désactiver tous les overlays et fonds superflus */
+.hero--video .hero__overlay {
+  display: none !important;
+  background: transparent !important;
+}
+
+/* Supprimer l'image de grain */
+.hero__bg img[src*="overlay-grain"] {
+  display: none !important;
+}
+
+/* Vidéo pleine écran sans filtres superflus */
+.hero--video .hero__video {
+  filter: brightness(0.85) !important; /* Juste un léger assombrissement pour le texte */
+  animation: none !important;
+}
+
+/* Désactiver les animations d'overlay */
+@keyframes heroOverlay {
+  from, to { filter: none; }
+}
+
+/* Supprimer les gradients complexes */
+.hero--video .hero__overlay {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* Assurer que la vidéo est bien en arrière-plan */
+.hero__bg {
+  background: #000 !important; /* Fond noir de secours */
+}
+
+/* Optimiser la lisibilité du texte */
+.hero--video .h1 {
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8) !important;
+}
+
+.hero--video .lead {
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Trust badges avec transparence améliorée */
+.hero--video .trust {
+  background: rgba(11, 11, 11, 0.75) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Kicker avec transparence */
+.hero--video .kicker {
+  background: rgba(255, 215, 0, 0.15) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 215, 0, 0.3) !important;
+  color: var(--gold) !important;
+}
+
+
+
+/* Caret visible */
+.caret {
+  background: var(--gold) !important;
+  animation: blink 1s infinite !important;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Pour les préférences reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero__video {
+    display: block !important; /* Afficher la vidéo même en reduced motion */
+    filter: brightness(0.7) !important;
+  }
+  
+  .hero__bg {
+    background: #000 !important; /* Fond noir si vidéo ne charge pas */
+  }
+}
+
+/* Bouton de contrôle vidéo optionnel */
+.hero__video-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+.video-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.video-toggle:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: scale(1.1);
+}
+/* =============================================
+   HARMONISATION COMPLÈTE DES IMAGES
+   Toutes les sections avec cartes
+============================================= */
+
+/* 1. Conteneur d'image standardisé pour TOUTES les cartes */
+.card__img-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid rgba(11,11,11,.08);
+  background: var(--gray-50);
+  margin-bottom: 16px;
+}
+
+/* 2. Images dans les conteneurs */
+.card__img-container .card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+/* 3. Effet de survol cohérent */
+.card:hover .card__img-container .card__img {
+  transform: scale(1.05);
+}
+
+/* 4. Ratios d'image spécifiques par section */
+
+/* Section Produits & Services - Ratio 16:9 (paysage) */
+#offers .card__img-container {
+  aspect-ratio: 16 / 9;
+}
+
+/* Sections À propos et Secteurs - Ratio 4:3 (plus carré) */
+#about .card__img-container,
+#sectors .card__img-container {
+  aspect-ratio: 4 / 3;
+}
+
+/* 5. Fallback pour navigateurs sans support aspect-ratio */
+@supports not (aspect-ratio: 16 / 9) {
+  .card__img-container {
+    position: relative;
+    height: 0;
+  }
+  
+  #offers .card__img-container {
+    padding-top: 56.25%; /* 16:9 = 56.25% */
+  }
+  
+  #about .card__img-container,
+  #sectors .card__img-container {
+    padding-top: 75%; /* 4:3 = 75% */
+  }
+  
+  .card__img-container .card__img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* 6. Harmonisation des hauteurs de cartes */
+.cards--3 {
+  align-items: stretch; /* Force l'alignement vertical */
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* 7. Structure interne cohérente des cartes */
+.card .h3 {
+  margin-top: 4px;
+  margin-bottom: 8px;
+  min-height: 2.5em; /* Garde les titres alignés même si longueur différente */
+}
+
+.card .muted {
+  flex-grow: 1; /* Pousse le contenu vers le bas */
+  margin-bottom: 16px;
+}
+
+/* 8. Liens alignés en bas */
+.card .link {
+  margin-top: auto; /* Pousse le lien vers le bas de la carte */
+  align-self: flex-start;
+}
+
+/* 9. Cartes media spécifiques (section Produits & Services) */
+.card--media {
+  padding: 20px;
+}
+
+.card--media .card__img-container {
+  margin-bottom: 18px;
+}
+
+/* 10. Sections À propos et Secteurs - Ajustements spécifiques */
+#about .card,
+#sectors .card {
+  padding: 20px;
+}
+
+#about .card .card__img-container,
+#sectors .card .card__img-container {
+  margin-bottom: 18px;
+}
+
+/* 11. Pour la section "Pourquoi nous choisir ?" */
+.why__right .panel img {
+  width: 100%;
+  height: 160px; /* Hauteur fixe pour l'image d'implantation */
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 12px;
+}
+
+/* =============================================
+   RESPONSIVE - Harmonisation mobile
+============================================= */
+
+@media (max-width: 980px) {
+  .cards--3 {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .card__img-container {
+    margin-bottom: 14px;
+  }
+  
+  .card .h3 {
+    min-height: auto; /* Libère la hauteur minimale sur tablette/mobile */
+  }
+}
+
+@media (max-width: 768px) {
+  /* Ratio plus adapté sur mobile */
+  #offers .card__img-container,
+  #about .card__img-container,
+  #sectors .card__img-container {
+    aspect-ratio: 3 / 2; /* Ratio intermédiaire pour mobile */
+  }
+  
+  @supports not (aspect-ratio: 3 / 2) {
+    #offers .card__img-container,
+    #about .card__img-container,
+    #sectors .card__img-container {
+      padding-top: 66.67%; /* 3:2 = 66.67% */
+    }
+  }
+  
+  .card {
+    padding: 18px;
+  }
+  
+  .why__right .panel img {
+    height: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards--3 {
+    grid-template-columns: 1fr;
+  }
+  
+  .card .h3 {
+    font-size: 17px;
+  }
+  
+  .why__right .panel img {
+    height: 120px;
+  }
+}
+
+/* =============================================
+   ANIMATIONS ET INTERACTIONS COHÉRENTES
+============================================= */
+
+/* Effet de tilting cohérent */
+.card[data-tilt]:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(11,11,11,.15);
+}
+
+/* Bordure subtile au survol */
+.card__img-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.card__img-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid transparent;
+  border-radius: 14px;
+  transition: border-color 0.3s ease;
+  pointer-events: none;
+}
+
+.card:hover .card__img-container::after {
+  border-color: var(--gold);
+}
+
+/* =============================================
+   CORRECTION DES STYLES EXISTANTS
+============================================= */
+
+/* Supprimer les hauteurs fixes des images existantes */
+.card__img {
+  height: auto !important; /* Override la hauteur fixe de 120px */
+}
+
+/* Corriger la classe .card--media si elle existe */
+.card--media .card__img-container {
+  margin-bottom: 18px;
+}
+
+/* S'assurer que toutes les cartes ont la même structure */
+.cards .card {
+  display: flex;
+  flex-direction: column;
+}
+/* =============================================
+   CORRECTION SPÉCIFIQUE - SECTION #about
+   Problème : Images non alignées avec les autres sections
+============================================= */
+
+/* 1. FORCER le conteneur d'image dans #about */
+#about .card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+#about .card__img-container {
+  width: 100% !important;
+  height: auto !important;
+  margin-bottom: 16px !important;
+  flex-shrink: 0 !important;
+}
+
+/* 2. Ratio spécifique pour #about - 4:3 */
+#about .card__img-container {
+  aspect-ratio: 4 / 3 !important;
+}
+
+/* Fallback pour navigateurs sans support aspect-ratio */
+@supports not (aspect-ratio: 4 / 3) {
+  #about .card__img-container {
+    position: relative !important;
+    height: 0 !important;
+    padding-top: 75% !important; /* 4:3 = 75% */
+  }
+  
+  #about .card__img-container .card__img {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+/* 3. FORCER la hauteur des images */
+#about .card__img-container .card__img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+}
+
+/* 4. Structure interne de la carte */
+#about .card .h3 {
+  margin-top: 4px !important;
+  margin-bottom: 8px !important;
+  min-height: 2.5em !important;
+  font-size: 18px !important;
+  line-height: 1.3 !important;
+}
+
+#about .card .muted {
+  flex-grow: 1 !important;
+  margin-bottom: 16px !important;
+  color: rgba(11,11,11,.70) !important;
+  line-height: 1.5 !important;
+}
+
+/* 5. S'assurer que les cartes sont de même hauteur */
+#about .cards--3 {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  align-items: stretch !important;
+  gap: 16px !important;
+}
+
+/* 6. Correction pour l'image d'implantation */
+#about .why__right .panel img {
+  width: 100% !important;
+  height: 140px !important;
+  object-fit: cover !important;
+  border-radius: 14px !important;
+  margin-bottom: 12px !important;
+  border: 1px solid rgba(11,11,11,.10) !important;
+}
+
+/* 7. Comparaison avec #sectors pour détecter les différences */
+#sectors .card__img-container,
+#about .card__img-container {
+  /* S'assurer que les propriétés sont identiques */
+  border-radius: 14px !important;
+  border: 1px solid rgba(11,11,11,.08) !important;
+  background: var(--gray-50) !important;
+  overflow: hidden !important;
+}
+
+/* 8. FORCER le reset des styles qui pourraient interférer */
+#about .card__img {
+  height: auto !important;
+  max-height: none !important;
+  min-height: 0 !important;
+}
+
+/* 9. Correction responsive */
+@media (max-width: 980px) {
+  #about .cards--3 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #about .card__img-container {
+    aspect-ratio: 3 / 2 !important;
+  }
+  
+  @supports not (aspect-ratio: 3 / 2) {
+    #about .card__img-container {
+      padding-top: 66.67% !important; /* 3:2 = 66.67% */
+    }
+  }
+  
+  #about .card .h3 {
+    min-height: auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #about .cards--3 {
+    grid-template-columns: 1fr !important;
+  }
+}
+/* =============================================
+   CARROUSEL LOGOS PARTENAIRES & INVESTISSEURS
+============================================= */
+
+.partners-logos-section {
+  width: 100%;
+  text-align: center;
+  padding: 40px 0;
+}
+
+.logos-container {
+  position: relative;
+  overflow: hidden;
+  padding: 30px 0;
+  margin: 0 auto;
+}
+
+/* Effet de fondu sur les bords */
+.logos-container::before,
+.logos-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.logos-container::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--alt), transparent);
+}
+
+.logos-container::after {
+  right: 0;
+  background: linear-gradient(-90deg, var(--alt), transparent);
+}
+
+.logos-track {
+  display: flex;
+  animation: scrollLogos 35s linear infinite;
+  gap: 50px;
+  padding: 0 20px;
+}
+
+.logo-item {
+  flex: 0 0 auto;
+  width: 220px;
+  height: 130px;
+  background: var(--bg);
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  padding: 25px;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.logo-item:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(11,11,11,0.15);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.logo-item img {
+  max-width: 85%;
+  max-height: 70px;
+  object-fit: contain;
+  filter: grayscale(30%);
+  opacity: 0.9;
+  transition: all 0.4s ease;
+}
+
+.logo-item:hover img {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* Badge pour distinguer investisseurs */
+.investor-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: linear-gradient(45deg, var(--gold), var(--gold-dark));
+  color: var(--black);
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.logo-item:hover .investor-badge {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animation de défilement */
+@keyframes scrollLogos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-270px * 10)); /* (width + gap) * nombre de logos */
+  }
+}
+
+/* Pause au survol */
+.logos-container:hover .logos-track {
+  animation-play-state: paused;
+}
+
+/* Indicateur de défilement */
+.scroll-indicator {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.scroll-icon {
+  animation: bounceIndicator 2s infinite;
+}
+
+@keyframes bounceIndicator {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .logo-item {
+    width: 200px;
+    height: 120px;
+  }
+  
+  @keyframes scrollLogos {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-250px * 10));
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .logo-item {
+    width: 180px;
+    height: 110px;
+  }
+  
+  .logos-track {
+    gap: 40px;
+  }
+  
+  @keyframes scrollLogos {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-220px * 10));
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .logos-container::before,
+  .logos-container::after {
+    width: 80px;
+  }
+  
+  .logo-item {
+    width: 160px;
+    height: 100px;
+    padding: 20px;
+  }
+  
+  .logos-track {
+    gap: 30px;
+  }
+  
+  @keyframes scrollLogos {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-190px * 10));
+    }
+  }
+  
+  .scroll-indicator {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-item {
+    width: 140px;
+    height: 90px;
+  }
+  
+  .logos-track {
+    gap: 20px;
+  }
+  
+  .logos-container::before,
+  .logos-container::after {
+    width: 50px;
+  }
+  
+  @keyframes scrollLogos {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-160px * 10));
+    }
+  }
+}
+
+/* Support pour réduire les animations */
+@media (prefers-reduced-motion: reduce) {
+  .logos-track {
+    animation: none;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+  
+  .logos-container::before,
+  .logos-container::after {
+    display: none;
+  }
+  
+  .scroll-indicator {
+    display: none;
   }
 }

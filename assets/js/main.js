@@ -55,6 +55,7 @@
         this.initProgressAnimations();
         this.initFormAnimations();
         this.initEnhancedHero();
+        this.initLogoCarousel(); // ← Ajouter cette ligne
       }
 
       // Recompute on resize (throttled)
@@ -315,7 +316,7 @@
       const rand = (a, b) => a + Math.random() * (b - a);
 
       // Gray + gold dust
-      const colors = ["rgba(255,215,0,.75)", "rgba(180,180,180,.35)", "rgba(90,90,90,.22)"];
+      const colors = ["rgba(255,215,0,.75)", "rgba(212,175,55,.55)", "rgba(180,150,40,.35)", "rgba(90,90,90,.22)"];
 
       const spawn = () => ({
         x: rand(0, w()),
@@ -525,6 +526,95 @@
         requestAnimationFrame(() => el.classList.add("is-in"));
       });
     }
+    // ---------- Logo Carousel ----------
+initLogoCarousel() {
+  const track = document.querySelector('.logos-track');
+  if (!track) return;
+
+  // Liste des logos avec distinction partenaire/investisseur
+  const partnerLogos = [
+    { 
+      name: "Partner 1", 
+      image: "assets/img/partner1.png",
+      type: "partner"
+    },
+    { 
+      name: "Partner 2", 
+      image: "assets/img/partner2.png",
+      type: "investor",
+      badge: "Investisseur"
+    },
+    { 
+      name: "Partner 3", 
+      image: "assets/img/partner3.png",
+      type: "partner"
+    },
+    { 
+      name: "Partner 4", 
+      image: "assets/img/partner4.png",
+      type: "investor",
+      badge: "Investisseur"
+    },
+    { 
+      name: "Partner 5", 
+      image: "assets/img/partner5.png",
+      type: "partner"
+    },
+    { 
+      name: "Partner 6", 
+      image: "assets/img/partner6.png",
+      type: "partner"
+    },
+    { 
+      name: "Partner 7", 
+      image: "assets/img/partner7.png",
+      type: "investor",
+      badge: "Investisseur"
+    },
+    { 
+      name: "Partner 8", 
+      image: "assets/img/partner8.png",
+      type: "partner"
+    },
+    { 
+      name: "Partner 9", 
+      image: "assets/img/partner9.png",
+      type: "partner"
+    },
+    { 
+      name: "Partner 10", 
+      image: "assets/img/partner10.png",
+      type: "investor",
+      badge: "Investisseur"
+    }
+  ];
+
+  // Dupliquer les logos pour un effet de boucle fluide
+  for (let i = 0; i < 3; i++) {
+    partnerLogos.forEach(logo => {
+      const logoItem = document.createElement('div');
+      logoItem.className = 'logo-item';
+      
+      const img = document.createElement('img');
+      img.src = logo.image;
+      img.alt = `${logo.name} logo`;
+      img.title = logo.name;
+      img.loading = "lazy";
+      
+      logoItem.appendChild(img);
+      
+      // Ajouter un badge pour les investisseurs
+      if (logo.type === 'investor' && logo.badge) {
+        const badge = document.createElement('span');
+        badge.className = 'investor-badge';
+        badge.textContent = logo.badge;
+        logoItem.appendChild(badge);
+      }
+      
+      track.appendChild(logoItem);
+    });
+  }
+}
   }
 
   // ---------- Boot ----------
