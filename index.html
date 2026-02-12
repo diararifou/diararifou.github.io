@@ -32,6 +32,7 @@
   }
   </script>
     <!-- Preload critical assets -->
+     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
   <link rel="preload" href="assets/video/mining-hero.mp4" as="video" type="video/mp4">
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" as="style" crossorigin>
   <link rel="preload" href="assets/css/style.css" as="style">
@@ -48,9 +49,8 @@
 
 <body>
 
-  <!-- Advanced animation layers -->
-  <canvas id="particles-canvas" class="particles" aria-hidden="true"></canvas>
-<div class="topbar">
+
+  <div class="topbar">
     <div class="container topbar__inner">
       <div class="topbar__left">
         <span class="chip">Mining Supply</span>
@@ -97,6 +97,9 @@
       <a href="#contact" class="mobile__cta" data-i18n="navContact">Contact</a>
     </div>
   </header>
+  
+  <canvas id="particles-canvas" class="particles" aria-hidden="true"></canvas>
+
   <section class="hero hero--video" id="hero-section">
     <div class="hero__bg">
       <video
@@ -169,21 +172,30 @@
           <p class="muted" data-i18n="numbersLead">Une vitrine claire pour rassurer les achats, la logistique et les partenaires.</p>
         </div>
         <div class="cards cards--numbers">
-          <div class="card card--number" data-tilt data-animate="vibrate" data-intensity="0.5">
-            <img src="assets/img/icon-coverage.svg" alt="" aria-hidden="true" width="40" height="40" style="width:40px;height:40px;margin-bottom:10px;opacity:.9">
-            <div class="card__value" data-counter="50" data-prefix="+" data-suffix="">+50</div>
+          <div class="card card--number" data-tilt>
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+              <i class="ri-tools-line" style="font-size: 40px; color: var(--gold);"></i>
+              <div class="card__value" data-counter="50" data-prefix="+">0</div>
+            </div>
             <div class="card__label" data-i18n="numbers1">Catégories d’équipements</div>
             <div class="counter-progress" data-width="100%"></div>
           </div>
-          <div class="card card--number" data-tilt data-animate="vibrate" data-intensity="0.5">
-            <img src="assets/img/icon-response.svg" alt="" aria-hidden="true" width="40" height="40" style="width:40px;height:40px;margin-bottom:10px;opacity:.9">
-            <div class="card__value" data-counter="48" data-prefix="" data-suffix="h">48h</div>
-            <div class="card__label" data-i18n="numbers2">Temps de réponse cible</div>
+          <div class="card card--number" data-tilt data-animate="vibrate" data-intensity="0.5">  
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+              <i class="ri-timer-flash-line" style="font-size: 40px; color: var(--gold);"></i>
+              <div class="card__value" data-counter="24" data-prefix="" data-suffix="h">24h</div>
+            </div>
+
+            <div class="card__label" data-i18n="numbers2">Temps de réponse message cible</div>
             <div class="counter-progress" data-width="100%"></div>
           </div>
           <div class="card card--number" data-tilt data-animate="vibrate" data-intensity="0.5">
-            <img src="assets/img/icon-categories.svg" alt="" aria-hidden="true" width="40" height="40" style="width:40px;height:40px;margin-bottom:10px;opacity:.9">
-            <div class="card__value" data-counter="2" data-prefix="" data-suffix="">2</div>
+            
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+              <i class="ri-global-line" style="font-size: 40px; color: var(--gold);"></i>
+              <div class="card__value" data-counter="2" data-prefix="" data-suffix="">2</div>
+            </div>
+
             <div class="card__label" data-i18n="numbers3">Zones : Afrique & Europe</div>
             <div class="counter-progress" data-width="100%"></div>
           </div>
@@ -200,56 +212,57 @@
           VOORS structure ses offres autour de la disponibilité, de la sécurité et de l’efficacité opérationnelle.
         </p>
       </div>
+      
 
       <div class="cards cards--3">
-      <div class="card" data-tilt>
-        <div class="card__img-container image-ratio-4-3">
-          <img class="card__img" 
-              src="assets/img/about-mission.jpg" 
-              loading="lazy" 
-              decoding="async" 
-              width="640" 
-              height="480" 
-              alt="Équipe et préparation logistique">
+        <div class="card" data-tilt>
+          <div class="card__img-container image-ratio-4-3">
+            <img class="card__img" 
+                src="assets/img/about-mission.jpg" 
+                loading="lazy" 
+                decoding="async" 
+                width="640" 
+                height="480" 
+                alt="Équipe et préparation logistique">
+          </div>
+          <h3 class="h3" data-i18n="aboutCard1Title">Mission</h3>
+          <p class="muted" data-i18n="aboutCard1Text">
+            Approvisionner le secteur minier avec des biens et services fiables, dans le respect des exigences industrielles.
+          </p>
         </div>
-        <h3 class="h3" data-i18n="aboutCard1Title">Mission</h3>
-        <p class="muted" data-i18n="aboutCard1Text">
-          Approvisionner le secteur minier avec des biens et services fiables, dans le respect des exigences industrielles.
-        </p>
+  
+        <div class="card" data-tilt>
+          <div class="card__img-container image-ratio-4-3">
+            <img class="card__img" 
+                src="assets/img/about-vision.jpg" 
+                loading="lazy" 
+                decoding="async" 
+                width="640" 
+                height="480" 
+                alt="Site industriel et équipements">
+          </div>
+          <h3 class="h3" data-i18n="aboutCard2Title">Vision</h3>
+          <p class="muted" data-i18n="aboutCard2Text">
+            Devenir un partenaire de référence pour les sous-traitants miniers et les acteurs industriels de la région.
+          </p>
+        </div>
+        
+        <div class="card" data-tilt>
+          <div class="card__img-container image-ratio-4-3">
+            <img class="card__img" 
+                src="assets/img/about-values.jpg" 
+                loading="lazy" 
+                decoding="async" 
+                width="640" 
+                height="480" 
+                alt="Équipement de sécurité et conformité">
+          </div>
+          <h3 class="h3" data-i18n="aboutCard3Title">Valeurs</h3>
+          <p class="muted" data-i18n="aboutCard3Text">
+            Fiabilité • Qualité • Sécurité • Transparence • Engagement.
+          </p>
+        </div>
       </div>
-  
-  <div class="card" data-tilt>
-    <div class="card__img-container image-ratio-4-3">
-      <img class="card__img" 
-           src="assets/img/about-vision.jpg" 
-           loading="lazy" 
-           decoding="async" 
-           width="640" 
-           height="480" 
-           alt="Site industriel et équipements">
-    </div>
-    <h3 class="h3" data-i18n="aboutCard2Title">Vision</h3>
-    <p class="muted" data-i18n="aboutCard2Text">
-      Devenir un partenaire de référence pour les sous-traitants miniers et les acteurs industriels de la région.
-    </p>
-  </div>
-  
-  <div class="card" data-tilt>
-    <div class="card__img-container image-ratio-4-3">
-      <img class="card__img" 
-           src="assets/img/about-values.jpg" 
-           loading="lazy" 
-           decoding="async" 
-           width="640" 
-           height="480" 
-           alt="Équipement de sécurité et conformité">
-    </div>
-    <h3 class="h3" data-i18n="aboutCard3Title">Valeurs</h3>
-    <p class="muted" data-i18n="aboutCard3Text">
-      Fiabilité • Qualité • Sécurité • Transparence • Engagement.
-    </p>
-  </div>
-</div>
 
       <div class="why">
         <div class="why__left">
@@ -463,68 +476,122 @@
   <section class="section" id="portal">
     <div class="container">
       <div class="section__head reveal" data-reveal="fade-up">
-        <h2 class="h2" data-i18n="portalTitle">Espace client (optionnel)</h2>
+        <h2 class="h2" data-i18n="portalTitle">Espace client</h2>
         <p class="lead lead--sm" data-i18n="portalLead">
           Une extension Phase 2 pour centraliser documents, demandes et suivi.
         </p>
       </div>
 
-      <div class="portal">
-        <div class="portal__box">
-          <h3 class="h3" data-i18n="portalBoxTitle">Portail entreprise</h3>
-          <ul class="list">
-            <li data-i18n="portal1">Connexion sécurisée</li>
-            <li data-i18n="portal2">Téléchargement de documents</li>
-            <li data-i18n="portal3">Suivi des demandes</li>
-            <li data-i18n="portal4">Messagerie client / entreprise</li>
-          </ul>
-        </div>
-        <div class="portal__note">
-          <div class="note">
-            <div class="note__title" data-i18n="portalNoteTitle">Phase 2</div>
-            <div class="note__text" data-i18n="portalNoteText">
-              Fonctionnalités activables après la mise en ligne du site vitrine.
-            </div>
+      <div class="grid grid--3">
+        <div class="card" data-tilt>
+          <div style="margin-bottom:15px">
+            <i class="ri-file-list-3-line" style="font-size:32px; color:var(--gold)"></i>
           </div>
+          <h3 class="h3">Documentation & Conformité</h3>
+          <p class="muted">Accès centralisé à vos certificats d'origine, fiches techniques et documents douaniers.</p>
         </div>
+
+        <div class="card" data-tilt>
+          <div style="margin-bottom:15px">
+            <i class="ri-truck-line" style="font-size:32px; color:var(--gold)"></i>
+          </div>
+          <h3 class="h3">Suivi de commande (Live)</h3>
+          <p class="muted">Tracking en temps réel de vos expéditions depuis la Belgique jusqu'au site minier.</p>
+        </div>
+
+        <div class="card" data-tilt>
+          <div style="margin-bottom:15px">
+            <i class="ri-customer-service-2-line" style="font-size:32px; color:var(--gold)"></i>
+          </div>
+          <h3 class="h3">Support Prioritaire</h3>
+          <p class="muted">Ticket SAV dédié et historique des maintenances pour vos équipements industriels.</p>
+        </div>
+      </div>
+
+      <div class="cta mt-4" style="background: var(--black); border-color: var(--black);">
+        <div style="color:white">
+          <h3 class="h3" style="color:white; margin-bottom:5px">Accès réservé aux partenaires</h3>
+          <p class="muted" style="color:rgba(255,255,255,0.7); margin:0">Le portail est en cours de déploiement final.</p>
+        </div>
+        <a href="#contact" class="btn btn--primary" data-ripple>Demander mes accès</a>
       </div>
     </div>
   </section>
 
   <section class="section section--alt" id="blog-preview">
-    <div class="container">
-      <div class="section__head reveal" data-reveal="fade-up">
-        <div>
-          <p class="eyebrow">ACTUALITÉS / BLOG</p>
-          <h2 class="h2">Insights & News du secteur minier</h2>
-          <p class="muted">
-            Veille, expertise et mises à jour sur l’approvisionnement, la maintenance et la performance opérationnelle.
-          </p>
+  <div class="container">
+    <div class="section__head reveal" data-reveal="fade-up">
+      <h2 class="h2">Insights & News du secteur minier</h2>
+      <p class="muted">
+        Veille, expertise et mises à jour sur l’approvisionnement, la maintenance et la performance opérationnelle.
+      </p>
+    </div>
+
+    <div class="grid grid--3">
+      
+      <article class="card" data-tilt>
+        <div class="card__slideshow">
+          <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=600" alt="Logistique transport" class="slide">
+          
+          <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&q=80&w=600" alt="Fret maritime" class="slide">
+          
+          <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80&w=600" alt="Entrepôt logistique" class="slide">
+        </div>
+        
+        <div class="card__body" style="padding: 18px;"> <div class="card__meta"><span class="pill">News</span> <small>Il y a 2 jours</small></div>
+          <h3 class="h3">Tendances logistiques 2024</h3>
+          <p class="muted">Comment optimiser la supply chain en zone isolée.</p>
+        </div>
+      </article>
+
+      <article class="card" data-tilt>
+        <div class="card__slideshow">
+          <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=600" alt="Technicien expert maintenance" class="slide">
+          
+          <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=600" alt="Mécanique" class="slide">
+          
+          <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=600" alt="Atelier soudure" class="slide">
         </div>
 
-        <a class="btn btn--ghost" data-ripple href="blog.html">Voir tous les articles</a>
-      </div>
+        <div class="card__body" style="padding: 18px;">
+          <div class="card__meta"><span class="pill">Maintenance</span> <small>Il y a 1 semaine</small></div>
+          <h3 class="h3">Prévention des pannes</h3>
+          <p class="muted">Les équipements critiques à surveiller cette saison.</p>
+        </div>
+      </article>
 
-      <div class="grid grid--3" id="homeBlogCards" aria-live="polite"></div>
+      <article class="card" data-tilt>
+        <div class="card__slideshow">
+          <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=600" alt="Formation" class="slide">
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=600" alt="Équipe" class="slide">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=600" alt="Réunion" class="slide">
+        </div>
 
-      <div class="chips">
-        <span class="pill">News Minières</span>
-        <span class="pill">Articles Expertise</span>
-      </div>
+        <div class="card__body" style="padding: 18px;">
+          <div class="card__meta"><span class="pill">RSE</span> <small>Il y a 2 semaines</small></div>
+          <h3 class="h3">Engagement local</h3>
+          <p class="muted">Notre impact sur l'emploi et la formation locale.</p>
+        </div>
+      </article>
+      
     </div>
+
+    <div class="chips">
+      <span class="pill">News Minières</span>
+      <span class="pill">Articles Expertise</span>
+    </div>
+    <a class="btn btn--ghost" data-ripple href="blog.html">Voir tous les articles</a>
+  </div>
   </section>
 
   <section class="section" id="projects">
     <div class="container">
       <div class="section__head reveal" data-reveal="fade-up">
-        <div>
-          <p class="eyebrow">RÉFÉRENCES / PROJETS</p>
+          <!-- <p class="eyebrow">RÉFÉRENCES / PROJETS</p> -->
           <h2 class="h2">Études de cas & réalisations</h2>
           <p class="muted">
             Exemples de besoins couverts : fourniture, sourcing, support terrain, logistique et mise en conformité.
           </p>
-        </div>
-        <a class="btn btn--primary" data-ripple href="#contact">Demander une étude</a>
       </div>
 
       <div class="grid grid--3">
@@ -561,6 +628,7 @@
           </ul>
         </article>
       </div>
+      <a class="btn btn--primary" data-ripple href="#contact">Demander une étude</a>
     </div>
   </section>
 
@@ -599,11 +667,21 @@
 
         <aside class="contact__side">
           <div class="sidecard">
+            <div class="sidecard__title" data-i18n="contactInfo">
+              <h3 style="display: flex"><img style="width:7%;height:8%;object-fit:contain;border-radius:4px" src="https://upload.wikimedia.org/wikipedia/commons/6/65/Flag_of_Belgium.svg">
+              Belgique - Bruxelles</h3></div>
             <div class="sidecard__title" data-i18n="contactInfo">Informations</div>
             <div class="sidecard__line"><strong data-i18n="contactPhone">Téléphone :</strong> <a href="tel:+22393996764">+223 93 99 67 64</a></div>
             <div class="sidecard__line"><strong>Email :</strong> <a href="mailto:contact@voorsms.com">contact@voorsms.com</a></div>
-            <div class="sidecard__line"><strong data-i18n="contactAreas">Zones :</strong> <span data-i18n="contactAreasText">Afrique de l’Ouest • International</span></div>
+            <!-- <div class="sidecard__line"><strong data-i18n="contactAreas">Zones :</strong> <span data-i18n="contactAreasText">Afrique de l’Ouest • International</span></div> -->
           </div>
+          <div class="sidecard">
+            <div class="sidecard__title" data-i18n="contactInfo">
+              <h3 style="display: flex"><img style="width:8%;height:8%;object-fit:contain;border-radius:4px" src="https://upload.wikimedia.org/wikipedia/commons/9/92/Flag_of_Mali.svg">Mali - Bamako</h3></div>
+            <div class="sidecard__title" data-i18n="contactInfo">Informations</div>
+            <div class="sidecard__line"><strong data-i18n="contactPhone">Téléphone :</strong> <a href="tel:+22393996764">+223 93 99 67 64</a></div>
+            <div class="sidecard__line"><strong>Email :</strong> <a href="mailto:contact@voorsms.com">contact@voorsms.com</a></div>
+           </div>
 
           <div class="sidecard">
             <div class="sidecard__title" data-i18n="contactNoteTitle">Engagement</div>

@@ -242,7 +242,7 @@ a{color:inherit;text-decoration:none}
 .section{padding: 70px 0}
 .section--alt{background: var(--alt); border-top: 1px solid rgba(11,11,11,.06); border-bottom: 1px solid rgba(11,11,11,.06)}
 .section--tight{padding: 42px 0}
-.section__head{margin:0 0 26px 0; max-width: 760px}
+.section__head{margin:0 0 26px 0; max-width: 980px}
 
 .split{display:grid; grid-template-columns: 1fr 1.2fr; gap:20px; align-items:center}
 .cards{display:grid; gap:16px}
@@ -1349,13 +1349,15 @@ body{
 }
 
 /* Particles canvas */
-.particles{
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: .75;
-  mix-blend-mode: screen;
+/* Dans votre fichier style.css */
+.particles {
+  position: fixed; 
+  inset: 0;         /* Raccourci pour top:0; right:0; bottom:0; left:0 */
+  width: 100%;
+  height: 100%;
+  z-index: 1;       /* Place le canvas derrière le contenu (si votre contenu a un z-index supérieur ou est relatif) */
+  pointer-events: none; /* Permet de cliquer "à travers" le canvas */
+  opacity: 0.9;     /* Transparence globale des particules */
 }
 
 /* Ensure main content above particles */
@@ -1432,6 +1434,9 @@ body > * { position: relative; z-index: 1; }
   box-shadow: var(--shadow-soft);
   transition: transform .28s var(--ease-out), box-shadow .28s var(--ease-out), border-color .28s var(--ease-out);
   will-change: transform;
+  position: relative;
+  z-index: 20;
+  background-color: var(--bg, #fff);
 }
 .section--alt .card,
 .section--alt .partner{
@@ -2565,5 +2570,303 @@ section.industrial-scan::after{
   
   .scroll-indicator {
     display: none;
+  }
+}
+/* =============================================
+   TITRE ET PARAGRAPHE SUR MÊME LIGNE
+============================================= */
+
+.section__head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 60px !important;
+    position: relative;
+}
+
+/* Ligne de séparation verticale entre h2 et p */
+.section__head::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 20px;
+    bottom: 20px;
+    width: 2px;
+    background: linear-gradient(to bottom, 
+        transparent, 
+        rgba(212, 175, 55, 0.5), 
+        transparent);
+    transform: translateX(-50%);
+}
+
+/* Titre (gauche) */
+.section__head .h2 {
+    font-size: clamp(30px, 3.2vw, 42px);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 0;
+    text-align: right;
+    padding-right: 30px;
+    color: var(--black);
+    position: relative;
+}
+
+/* Accent doré sur le titre */
+.section__head .h2::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 10px;
+    bottom: 10px;
+    width: 4px;
+    background: var(--gold);
+    border-radius: 4px;
+}
+
+/* Paragraphe (droite) */
+.section__head .lead,
+.section__head .muted {
+    font-size: 17px;
+    line-height: 1.7;
+    color: rgba(11, 11, 11, 0.75);
+    margin-bottom: 0;
+    padding-left: 30px;
+    font-weight: 400;
+}
+
+/* Version avec bouton */
+.section__head.has-button {
+    grid-template-columns: 1fr 1fr auto;
+    gap: 40px;
+}
+
+.section__head.has-button::before {
+    left: calc(50% - 20px); /* Ajuster pour le bouton */
+}
+
+.section__head.has-button .btn {
+    align-self: center;
+    white-space: nowrap;
+}
+
+/* Badge/tag optionnel */
+.section__head .eyebrow {
+    grid-column: 1 / -1;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    padding: 8px 16px;
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 20px;
+    text-align: center;
+}
+
+/* Animation d'entrée */
+@keyframes slideInPair {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section__head.reveal.is-visible .h2 {
+    animation: slideInPair 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.section__head.reveal.is-visible .lead {
+    animation: slideInPair 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+}
+
+/* =============================================
+   RESPONSIVE
+============================================= */
+
+@media (max-width: 1024px) {
+    .section__head {
+        gap: 40px;
+    }
+    
+    .section__head .h2 {
+        font-size: 32px;
+        padding-right: 25px;
+    }
+    
+    .section__head .lead {
+        font-size: 16px;
+        padding-left: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .section__head {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        text-align: center;
+    }
+    
+    .section__head::before {
+        display: none;
+    }
+    
+    .section__head .h2 {
+        text-align: center;
+        padding-right: 0;
+        font-size: 30px;
+    }
+    
+    .section__head .h2::after {
+        display: none;
+    }
+    
+    .section__head .lead {
+        text-align: center;
+        padding-left: 0;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+    
+    .section__head.has-button {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .section__head.has-button .btn {
+        justify-self: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .section__head {
+        gap: 20px;
+        margin-bottom: 45px !important;
+    }
+    
+    .section__head .h2 {
+        font-size: 26px;
+    }
+    
+    .section__head .lead {
+        font-size: 15px;
+    }
+    
+    .section__head .eyebrow {
+        font-size: 11px;
+        padding: 6px 14px;
+        margin-bottom: 15px;
+    }
+}
+.section {
+    padding-top: 30px !important;
+    padding-bottom: 50px !important;
+}
+/* --- CORRECTIF Z-INDEX (A ajouter à la fin du fichier) --- */
+
+/* 1. Le Header et la Topbar doivent être tout en haut */
+.header, .topbar {
+  position: relative; 
+  z-index: 100; /* Toujours au-dessus de tout */
+  /* Le header a déjà un background défini plus haut, c'est bon */
+}
+
+/* 2. Le Hero (Vidéo) doit cacher les particules */
+.hero {
+  position: relative;
+  z-index: 5;
+  background: #000; /* Fond noir par sécurité si la vidéo charge mal */
+}
+
+/* 3. Les Cartes, Boutons et Formulaires doivent flotter au-dessus */
+.card, 
+.sidecard, 
+.partner, 
+.btn, 
+.form,
+.header, 
+.portal__box,
+.hero,
+.trust {
+  position: relative; /* Indispensable */
+  z-index: 20;        /* Niveau 10 > Niveau 0 (particules) */
+  /* Note : Ces éléments ont déjà background: #fff dans votre CSS, donc ils masqueront les particules */
+}
+
+/* 4. Cas spécifique pour les sections grises (.section--alt) */
+/* Si vous voulez que les particules passent DERRIÈRE le gris */
+/* Dans style.css */
+.section--alt {
+  z-index: 1;
+  
+  /* IMPORTANT : Supprimez 'position' et 'z-index' s'ils sont présents ici */
+  /* La section doit rester dans le flux normal pour être SOUS les particules */
+}
+/* --- Styles du Slideshow Card --- */
+
+/* 1. Ajustement de la carte pour accepter le slideshow */
+#blog-preview .card {
+  padding: 0; /* On retire le padding global pour que l'image touche les bords */
+  overflow: hidden; /* Important pour les coins arrondis */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 2. Le conteneur des images */
+.card__slideshow {
+  position: relative;
+  width: 100%;
+  height: 200px; /* Hauteur de la zone image */
+  overflow: hidden;
+  background: var(--gray-100);
+}
+
+/* 3. Les images individuelles */
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Remplit bien la zone sans déformer */
+  opacity: 0; /* Caché par défaut */
+  animation: slideShow 12s infinite linear; /* Animation de 12 secondes */
+}
+
+/* 4. Décalage des animations (pour qu'elles ne s'affichent pas toutes en même temps) */
+/* Image 1 : commence tout de suite */
+.slide:nth-child(1) {
+  animation-delay: 0s;
+  opacity: 1; /* Visible au chargement si le CSS met du temps */
+}
+/* Image 2 : commence après 4 secondes */
+.slide:nth-child(2) {
+  animation-delay: 4s;
+}
+/* Image 3 : commence après 8 secondes */
+.slide:nth-child(3) {
+  animation-delay: 8s;
+}
+
+/* 5. L'animation clé (Keyframes) */
+@keyframes slideShow {
+  0% { opacity: 0; transform: scale(1); }
+  5% { opacity: 1; }     /* Apparition rapide */
+  33% { opacity: 1; }    /* Reste visible 1/3 du temps */
+  38% { opacity: 0; transform: scale(1.1); } /* Disparition + léger zoom (effet Ken Burns) */
+  100% { opacity: 0; }
+}
+
+/* 6. Petit ajustement mobile */
+@media (max-width: 768px) {
+  .card__slideshow {
+    height: 180px;
   }
 }

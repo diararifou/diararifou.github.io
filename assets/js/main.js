@@ -11,7 +11,7 @@
   // ---------- Helpers ----------
   const qs = (sel, root = document) => root.querySelector(sel);
   const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
-
+  
   const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
   const prefersReducedMotion = () =>
     window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches || false;
@@ -30,7 +30,7 @@
       this.canvas = null;
       this.ctx = null;
       this.particles = [];
-      this.particleCfg = { count: 42 };
+      this.particleCfg = { count: 80 }
     }
 
     init() {
@@ -47,7 +47,6 @@
       this.initCounters();
 
       if (!this.isReduced) {
-        this.initParticles();
         this.initParallax();
         this.initTiltCards();
         this.initMicroInteractions();
@@ -291,86 +290,6 @@
       this.cleanupFns.push(() => io.disconnect());
     }
 
-    // ---------- Particles (canvas overlay) ----------
-    initParticles() {
-      this.canvas = qs("#particles-canvas");
-      if (!this.canvas) return;
-
-      const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-      this.ctx = this.canvas.getContext("2d", { alpha: true });
-
-      const resize = () => {
-        const rect = this.canvas.getBoundingClientRect();
-        this.canvas.width = Math.floor(rect.width * dpr);
-        this.canvas.height = Math.floor(rect.height * dpr);
-        this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      };
-
-      resize();
-      window.addEventListener("resize", resize, { passive: true });
-      this.cleanupFns.push(() => window.removeEventListener("resize", resize));
-
-      const w = () => this.canvas.getBoundingClientRect().width;
-      const h = () => this.canvas.getBoundingClientRect().height;
-
-      const rand = (a, b) => a + Math.random() * (b - a);
-
-      // Gray + gold dust
-      const colors = ["rgba(255,215,0,.75)", "rgba(212,175,55,.55)", "rgba(180,150,40,.35)", "rgba(90,90,90,.22)"];
-
-      const spawn = () => ({
-        x: rand(0, w()),
-        y: rand(0, h()),
-        r: rand(1.5, 4.5),
-        vx: rand(-0.25, 0.25),
-        vy: rand(-0.18, 0.18),
-        a: rand(0.25, 0.8),
-        c: colors[(Math.random() * colors.length) | 0]
-      });
-
-      this.particles = Array.from({ length: this.particleCfg.count }, spawn);
-
-      const loop = () => {
-        if (document.hidden) {
-          const id = requestAnimationFrame(loop);
-          this.rafIds.add(id);
-          return;
-        }
-
-        const ctx = this.ctx;
-        if (!ctx) return;
-
-        const width = w();
-        const height = h();
-
-        ctx.clearRect(0, 0, width, height);
-
-        for (const p of this.particles) {
-          p.x += p.vx;
-          p.y += p.vy;
-
-          // soft wrap
-          if (p.x < -20) p.x = width + 20;
-          if (p.x > width + 20) p.x = -20;
-          if (p.y < -20) p.y = height + 20;
-          if (p.y > height + 20) p.y = -20;
-
-          ctx.globalAlpha = p.a;
-          ctx.beginPath();
-          ctx.fillStyle = p.c;
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        ctx.globalAlpha = 1;
-
-        const id = requestAnimationFrame(loop);
-        this.rafIds.add(id);
-      };
-
-      const id = requestAnimationFrame(loop);
-      this.rafIds.add(id);
-    }
-
     // ---------- Parallax (data-parallax) ----------
     initParallax() {
       const els = qsa("[data-parallax]");
@@ -527,101 +446,185 @@
       });
     }
     // ---------- Logo Carousel ----------
-initLogoCarousel() {
-  const track = document.querySelector('.logos-track');
-  if (!track) return;
+  initLogoCarousel() {
+    const track = document.querySelector('.logos-track');
+    if (!track) return;
 
-  // Liste des logos avec distinction partenaire/investisseur
-  const partnerLogos = [
-    { 
-      name: "Partner 1", 
-      image: "assets/img/partner1.png",
-      type: "partner"
-    },
-    { 
-      name: "Partner 2", 
-      image: "assets/img/partner2.png",
-      type: "investor",
-      badge: "Investisseur"
-    },
-    { 
-      name: "Partner 3", 
-      image: "assets/img/partner3.png",
-      type: "partner"
-    },
-    { 
-      name: "Partner 4", 
-      image: "assets/img/partner4.png",
-      type: "investor",
-      badge: "Investisseur"
-    },
-    { 
-      name: "Partner 5", 
-      image: "assets/img/partner5.png",
-      type: "partner"
-    },
-    { 
-      name: "Partner 6", 
-      image: "assets/img/partner6.png",
-      type: "partner"
-    },
-    { 
-      name: "Partner 7", 
-      image: "assets/img/partner7.png",
-      type: "investor",
-      badge: "Investisseur"
-    },
-    { 
-      name: "Partner 8", 
-      image: "assets/img/partner8.png",
-      type: "partner"
-    },
-    { 
-      name: "Partner 9", 
-      image: "assets/img/partner9.png",
-      type: "partner"
-    },
-    { 
-      name: "Partner 10", 
-      image: "assets/img/partner10.png",
-      type: "investor",
-      badge: "Investisseur"
-    }
-  ];
+    // Liste des logos avec distinction partenaire/investisseur
+    // =============================================
+    // PARTNER LOGOS - SECTEUR MINIER
+    // Entreprises légitimes - Liens officiels directs
+    // =============================================
+    const partnerLogos = [
+      // -------------------------------------------------
+      // 🌍 GLOBAL MAJORS (Partenaires stratégiques mondiaux)
+      // -------------------------------------------------
+      {
+        name: "BHP",
+        image: "https://www.bhp.com/-/media/project/bhp1ip/bhp1ip-en/bhp-orange.png?iar=0&hash=9467A83EBA5D4819D582B7F0A7E0239B",
+        type: "investor",
+        badge: "Investisseur"
+      },
+      {
+        name: "Rio Tinto",
+        image: "https://cdn-rio.dataweavers.io/-/media/project/riotinto/shared/riologo.svg?rev=-1",
+        type: "investor",
+        badge: "Investisseur"
+      },
+      {
+        name: "Glencore",
+        image: "https://www.glencore.com/.resources/gc/webresources/img/Glencore_logo.svg",
+        type: "investor",
+        badge: "Investisseur"
+      },
+      {
+        name: "Anglo American",
+        image: "https://www.angloamerican.com/~/media/Images/A/Anglo-American-Group-v9/Universal/logo/anglo-american-logo-color.svg",
+        type: "partner"
+      },
+      {
+        name: "Shell",
+        image: "https://upload.wikimedia.org/wikipedia/fr/e/e8/Shell_logo.svg",
+        type: "partner"
+      },
+      {
+        name: "TotalEnergies",
+        image: "https://totalenergies.com/themes/custom/totalenergies_com/dist/img/logo_totalenergies.png",
+        type: "partner"
+      },
 
-  // Dupliquer les logos pour un effet de boucle fluide
-  for (let i = 0; i < 3; i++) {
-    partnerLogos.forEach(logo => {
-      const logoItem = document.createElement('div');
-      logoItem.className = 'logo-item';
-      
-      const img = document.createElement('img');
-      img.src = logo.image;
-      img.alt = `${logo.name} logo`;
-      img.title = logo.name;
-      img.loading = "lazy";
-      
-      logoItem.appendChild(img);
-      
-      // Ajouter un badge pour les investisseurs
-      if (logo.type === 'investor' && logo.badge) {
-        const badge = document.createElement('span');
-        badge.className = 'investor-badge';
-        badge.textContent = logo.badge;
-        logoItem.appendChild(badge);
+      // -------------------------------------------------
+      // 🌍 AFRICA & STRATEGIC PLAYERS (Partenaires clés)
+      // -------------------------------------------------
+      {
+        name: "Perkins Engines",
+        image: "https://upload.wikimedia.org/wikipedia/commons/1/14/Perkins-Logo.svg",
+        type: "investor",
+        badge: "Investisseur"
+      },
+      {
+        name: " Protection EPI",
+        image: "https://protection-epi.com/uploads/2024/01/protection-epi-logo.svg",
+        type: "partner"
+      },
+      {
+        name: "Caterpillar Inc",
+        image: "https://media.designrush.com/inspiration_images/134799/conversions/_1511457750_728_-caterpillar-desktop.jpg",
+        type: "partner"
+      },
+      {
+        name: "Carbon Activated Europe",
+        image: "https://www.carbonactivatedeurope.com/wp-content/uploads/2022/07/CAE-Logo-Blue.png",
+        type: "partner"
+      },
+      {
+        name: "Ronix Tools",
+        image: "https://ronixtools.com/en/blog/wp-content/uploads/2023/03/ronix-mag-logo.png",
+        type: "partner"
+      },
+      {
+        name: "Lincoln Electric",
+        image: "https://www.lincolnelectric.com/-/media/project/website/logo.ashx?iar=0&hash=C14096386CBAB143E630526AD0ACF6AB",
+        type: "partner"
       }
-      
-      track.appendChild(logoItem);
+    ];
+
+    // Dupliquer les logos pour un effet de boucle fluide
+    for (let i = 0; i < 3; i++) {
+      partnerLogos.forEach(logo => {
+        const logoItem = document.createElement('div');
+        logoItem.className = 'logo-item';
+        
+        const img = document.createElement('img');
+        img.src = logo.image;
+        img.alt = `${logo.name} logo`;
+        img.title = logo.name;
+        img.loading = "lazy";
+        
+        logoItem.appendChild(img);
+        
+        // Ajouter un badge pour les investisseurs
+        if (logo.type === 'investor' && logo.badge) {
+          const badge = document.createElement('span');
+          badge.className = 'investor-badge';
+          badge.textContent = logo.badge;
+          logoItem.appendChild(badge);
+        }
+        
+        track.appendChild(logoItem);
+      });
+    }
+  }
+  }
+(function() {
+  "use strict";
+
+  // Configuration
+  const canvasId = "#particles-canvas";
+  const particleCount = 40; // Nombre de particules
+  const particleColor = 'rgba(255, 215, 0, 0.8)'; // Couleur (ici le Gold du thème)
+
+  const canvas = document.querySelector(canvasId);
+  if (!canvas) return; // Sécurité si le canvas n'existe pas
+
+  const ctx = canvas.getContext("2d");
+  let particles = [];
+
+  // Redimensionner le canvas pour qu'il prenne tout l'écran
+  const resize = () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  };
+  
+  window.addEventListener("resize", resize);
+  resize(); // Appel initial
+
+  // Initialisation des particules
+  for(let i = 0; i < particleCount; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.5, // Vitesse horizontale
+      vy: (Math.random() - 0.5) * 0.5, // Vitesse verticale
+      size: Math.random() * 3 + 2,     // Taille aléatoire entre 1 et 3px
+      color: particleColor
     });
   }
-}
-  }
 
+  // Boucle d'animation
+  const animate = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    particles.forEach(p => {
+      // Mise à jour de la position
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Rebondir / Réapparaître si sort de l'écran (Boundary checks)
+      if(p.x < 0) p.x = canvas.width;
+      if(p.x > canvas.width) p.x = 0;
+      if(p.y < 0) p.y = canvas.height;
+      if(p.y > canvas.height) p.y = 0;
+
+      // Dessin de la particule
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    requestAnimationFrame(animate);
+  };
+
+  // Lancer l'animation
+  animate();
+})();
   // ---------- Boot ----------
   const boot = () => {
     const manager = new AnimationManager();
     manager.init();
-
+const langManager = new LanguageManager();
+langManager.init();
     // Pause heavy loops when tab hidden
     const onVis = () => {
       document.documentElement.classList.toggle("is-hidden", document.hidden);
@@ -651,3 +654,288 @@ class IntersectionManager {
     this.observers.forEach(io => io.disconnect());
   }
 }
+// =============================================
+// LANGUAGE MANAGER - VOORS (FR/EN)
+// =============================================
+// =============================================
+// LANGUAGE MANAGER - VOORS (FR/EN) - ULTRA ROBUSTE
+// =============================================
+// =============================================
+// LANGUAGE MANAGER - VOORS (FR/EN)
+// =============================================
+class LanguageManager {
+  constructor() {
+    // Dictionnaire complet des traductions
+    this.translations = {
+      fr: {
+        langLabel: "FR",
+        navAbout: "À propos",
+        navOffers: "Produits & Services",
+        navSectors: "Secteurs",
+        navPartners: "Partenaires",
+        navBlog: "Actualités",
+        navContact: "Contact",
+        heroKicker: "Mining Innovation & Performance",
+        heroTrust1: "Réactivité & support",
+        heroTrust2: "Approche partenariat",
+        heroTrust3: "Couverture internationale",
+        numbersTitle: "Chiffres clés",
+        numbersLead: "Une vitrine claire pour rassurer les achats, la logistique et les partenaires.",
+        numbers1: "Catégories d’équipements",
+        numbers2: "Temps de réponse message cible",
+        numbers3: "Zones : Afrique & Europe",
+        aboutTitle: "À propos de VOORS",
+        aboutLead: "VOORS structure ses offres autour de la disponibilité, de la sécurité et de l’efficacité opérationnelle.",
+        aboutCard1Title: "Mission",
+        aboutCard1Text: "Approvisionner le secteur minier avec des biens et services fiables, dans le respect des exigences industrielles.",
+        aboutCard2Title: "Vision",
+        aboutCard2Text: "Devenir un partenaire de référence pour les sous-traitants miniers et les acteurs industriels de la région.",
+        aboutCard3Title: "Valeurs",
+        aboutCard3Text: "Fiabilité • Qualité • Sécurité • Transparence • Engagement.",
+        whyTitle: "Pourquoi nous choisir ?",
+        why1: "Approche B2B : process achats, conformité et délais.",
+        why2: "Catalogue structuré : équipements, pièces, consommables.",
+        why3: "Support opérationnel : maintenance et assistance.",
+        why4: "Communication claire : devis, spécifications, traçabilité.",
+        why5: "Couverture internationale : Afrique de l’Ouest & partenaires.",
+        implTitle: "Implantation",
+        implText: "Belgique • Mali — Coordination, sourcing et proximité opérationnelle.",
+        offersTitle: "Produits & Services",
+        offersLead: "Une offre structurée, orientée disponibilité et performance terrain.",
+        offersCard1Title: "Fourniture de biens",
+        offersCard1Text: "Machines industrielles, pièces de rechange, moteurs, pompes, équipements électriques, télécoms, EPI…",
+        offersCardLink: "Voir le catalogue",
+        offersCard2Title: "Maintenance & assistance",
+        offersCard2Text: "Entretiens, maintenance industrielle et support opérationnel selon vos besoins.",
+        offersCardLink2: "Parler à un responsable",
+        offersCard3Title: "Sourcing & partenariat",
+        offersCard3Text: "Approvisionnement, coordination et réseau partenaires pour sécuriser la chaîne de valeur.",
+        offersCardLink3: "Découvrir",
+        catalogTitle: "Catégories principales",
+        cat1: "Machines industrielles & pièces",
+        cat2: "Moteurs & pompes",
+        cat3: "Produits chimiques & labo",
+        cat4: "Véhicules & pièces",
+        cat5: "Groupes électrogènes & solaire",
+        cat6: "Électrique / IT / Télécom",
+        cat7: "EPI & robinetterie",
+        sectorsTitle: "Secteurs d’intervention",
+        sectorsLead: "Une approche adaptable aux environnements industriels exigeants.",
+        sector1: "Mines industrielles",
+        sector1Text: "Approvisionnement, consommables, équipements et besoins spécifiques.",
+        sector2: "Sous-traitance minière",
+        sector2Text: "Support aux sous-traitants : pièces, maintenance, équipements terrain.",
+        sector3: "Projets industriels",
+        sector3Text: "Équipements, énergie, sécurité et logistique pour opérations industrielles.",
+        partnersTitle: "Partenaires & investisseurs",
+        partnersLead: "VOORS développe un réseau de collaboration pour renforcer la qualité, la disponibilité et la couverture internationale.",
+        p1: "Partenaires fournisseurs",
+        p1d: "Sourcing et disponibilité sur des catégories critiques.",
+        p2: "Partenaires techniques",
+        p2d: "Support maintenance, expertise et interventions.",
+        p3: "Investisseurs / institutions",
+        p3d: "Développement, conformité et expansion régionale.",
+        portalTitle: "Espace client",
+        portalLead: "Une extension Phase 2 pour centraliser documents, demandes et suivi.",
+        portalCard1Title: "Documentation & Conformité",
+        portalCard1Text: "Accès centralisé à vos certificats d'origine, fiches techniques et documents douaniers.",
+        portalCard2Title: "Suivi de commande (Live)",
+        portalCard2Text: "Tracking en temps réel de vos expéditions depuis la Belgique jusqu'au site minier.",
+        portalCard3Title: "Support Prioritaire",
+        portalCard3Text: "Ticket SAV dédié et historique des maintenances pour vos équipements industriels.",
+        portalCtaTitle: "Accès réservé aux partenaires",
+        portalCtaText: "Le portail est en cours de déploiement final.",
+        portalCtaBtn: "Demander mes accès",
+        contactTitle: "Contact",
+        contactLead: "Décrivez votre besoin (équipement, pièce, consommable, maintenance). Nous répondons rapidement.",
+        fName: "Nom",
+        fEmail: "Email",
+        fMsg: "Message",
+        fSend: "Envoyer",
+        contactInfo: "Informations",
+        contactPhone: "Téléphone :",
+        contactNoteTitle: "Engagement",
+        contactNoteText: "Réponse rapide • Process clair • Partenariat long terme.",
+        footerText: "Fourniture de biens & services pour le secteur minier. Approche B2B, fiabilité et performance.",
+        footerLinks: "Liens",
+        footerLegal: "Légal",
+        legal: "Mentions légales",
+        privacy: "Politique de confidentialité",
+        footerMade: "Identité digitale : Charte VOORS",
+        ctaPartnersTitle: "Vous souhaitez collaborer ?",
+        ctaPartnersText: "Contactez-nous pour étudier un partenariat ou une opportunité d’investissement.",
+        ctaPartnersBtn: "Nous contacter"
+      },
+      en: {
+        langLabel: "EN",
+        navAbout: "About",
+        navOffers: "Products & Services",
+        navSectors: "Sectors",
+        navPartners: "Partners",
+        navBlog: "News",
+        navContact: "Contact",
+        heroKicker: "Mining Innovation & Performance",
+        heroTrust1: "Responsiveness & Support",
+        heroTrust2: "Partnership Approach",
+        heroTrust3: "International Coverage",
+        numbersTitle: "Key Figures",
+        numbersLead: "A clear overview to reassure procurement, logistics, and partners.",
+        numbers1: "Equipment Categories",
+        numbers2: "Target Response Time",
+        numbers3: "Zones: Africa & Europe",
+        aboutTitle: "About VOORS",
+        aboutLead: "VOORS structures its offers around availability, safety, and operational efficiency.",
+        aboutCard1Title: "Mission",
+        aboutCard1Text: "Supplying the mining sector with reliable goods and services, compliant with industrial standards.",
+        aboutCard2Title: "Vision",
+        aboutCard2Text: "To become a reference partner for mining subcontractors and industrial players in the region.",
+        aboutCard3Title: "Values",
+        aboutCard3Text: "Reliability • Quality • Safety • Transparency • Commitment.",
+        whyTitle: "Why choose us?",
+        why1: "B2B Approach: procurement process, compliance, and deadlines.",
+        why2: "Structured Catalog: equipment, spare parts, consumables.",
+        why3: "Operational Support: maintenance and assistance.",
+        why4: "Clear Communication: quotes, specifications, traceability.",
+        why5: "International Coverage: West Africa & partners.",
+        implTitle: "Locations",
+        implText: "Belgium • Mali — Coordination, sourcing, and operational proximity.",
+        offersTitle: "Products & Services",
+        offersLead: "A structured offer, focused on availability and field performance.",
+        offersCard1Title: "Goods Supply",
+        offersCard1Text: "Industrial machines, spare parts, motors, pumps, electrical equipment, telecoms, PPE…",
+        offersCardLink: "View catalog",
+        offersCard2Title: "Maintenance & Support",
+        offersCard2Text: "Servicing, industrial maintenance, and operational support tailored to your needs.",
+        offersCardLink2: "Talk to an expert",
+        offersCard3Title: "Sourcing & Partnership",
+        offersCard3Text: "Procurement, coordination, and partner network to secure the value chain.",
+        offersCardLink3: "Discover",
+        catalogTitle: "Main Categories",
+        cat1: "Industrial Machines & Parts",
+        cat2: "Motors & Pumps",
+        cat3: "Chemicals & Lab",
+        cat4: "Vehicles & Parts",
+        cat5: "Generators & Solar",
+        cat6: "Electrical / IT / Telecom",
+        cat7: "PPE & Valves",
+        sectorsTitle: "Sectors of Intervention",
+        sectorsLead: "An approach adaptable to demanding industrial environments.",
+        sector1: "Industrial Mining",
+        sector1Text: "Supply, consumables, equipment, and specific needs.",
+        sector2: "Mining Subcontracting",
+        sector2Text: "Support for subcontractors: parts, maintenance, field equipment.",
+        sector3: "Industrial Projects",
+        sector3Text: "Equipment, energy, safety, and logistics for industrial operations.",
+        partnersTitle: "Partners & Investors",
+        partnersLead: "VOORS develops a collaboration network to strengthen quality, availability, and international coverage.",
+        p1: "Supplier Partners",
+        p1d: "Sourcing and availability for critical categories.",
+        p2: "Technical Partners",
+        p2d: "Maintenance support, expertise, and interventions.",
+        p3: "Investors / Institutions",
+        p3d: "Development, compliance, and regional expansion.",
+        portalTitle: "Client Portal",
+        portalLead: "A Phase 2 extension to centralize documents, requests, and tracking.",
+        portalCard1Title: "Documentation & Compliance",
+        portalCard1Text: "Centralized access to your certificates of origin, technical data sheets, and customs documents.",
+        portalCard2Title: "Order Tracking (Live)",
+        portalCard2Text: "Real-time tracking of your shipments from Belgium to the mining site.",
+        portalCard3Title: "Priority Support",
+        portalCard3Text: "Dedicated after-sales ticket and maintenance history for your industrial equipment.",
+        portalCtaTitle: "Access reserved for partners",
+        portalCtaText: "The portal is currently in final deployment.",
+        portalCtaBtn: "Request my access",
+        contactTitle: "Contact",
+        contactLead: "Describe your need (equipment, part, consumable, maintenance). We reply quickly.",
+        fName: "Name",
+        fEmail: "Email",
+        fMsg: "Message",
+        fSend: "Send",
+        contactInfo: "Information",
+        contactPhone: "Phone:",
+        contactNoteTitle: "Commitment",
+        contactNoteText: "Fast response • Clear process • Long-term partnership.",
+        footerText: "Supply of goods & services for the mining sector. B2B approach, reliability, and performance.",
+        footerLinks: "Links",
+        footerLegal: "Legal",
+        legal: "Legal Mentions",
+        privacy: "Privacy Policy",
+        footerMade: "Digital Identity: VOORS Charter",
+        ctaPartnersTitle: "Wish to collaborate?",
+        ctaPartnersText: "Contact us to discuss a partnership or an investment opportunity.",
+        ctaPartnersBtn: "Contact us"
+      }
+    };
+
+    // Récupération de la langue stockée ou français par défaut
+    this.lang = localStorage.getItem('voors-lang') || 'fr';
+    this.btn = null;
+    this.targets = null;
+  }
+
+  // Initialisation (à appeler après le chargement du DOM)
+  init() {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => this.start());
+    } else {
+      this.start();
+    }
+  }
+
+  start() {
+    this.btn = document.querySelector('[data-lang-switch]');
+    this.targets = document.querySelectorAll('[data-i18n]');
+
+    if (!this.btn) {
+      console.warn('Bouton de langue introuvable. Délégation activée.');
+      document.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-lang-switch]');
+        if (btn) this.handleClick(btn);
+      });
+    } else {
+      this.btn.addEventListener('click', (e) => this.handleClick(e.currentTarget));
+    }
+
+    // Appliquer la langue sauvegardée
+    this.applyLanguage(this.lang);
+  }
+
+  handleClick(btn) {
+    if (btn && btn.preventDefault) btn.preventDefault();
+    const newLang = this.lang === 'fr' ? 'en' : 'fr';
+    this.applyLanguage(newLang);
+  }
+
+  applyLanguage(lang) {
+    if (!this.translations[lang]) {
+      console.error(`Langue ${lang} non supportée`);
+      return;
+    }
+
+    this.lang = lang;
+    localStorage.setItem('voors-lang', lang);
+    document.documentElement.setAttribute('lang', lang);
+
+    // Mettre à jour tous les éléments data-i18n
+    this.targets?.forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const text = this.translations[lang][key];
+      if (text) {
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.setAttribute('placeholder', text);
+        } else {
+          el.innerHTML = text;
+        }
+      }
+    });
+
+    // Mettre à jour le label du bouton
+    const labelSpan = this.btn?.querySelector('[data-i18n="langLabel"]');
+    if (labelSpan) labelSpan.textContent = lang.toUpperCase();
+  }
+}
+
+// Instanciation et initialisation (APRÈS la définition de la classe)
+const langManager = new LanguageManager();
+langManager.init();
+
